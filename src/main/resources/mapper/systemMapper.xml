@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.inventory.tracker.dao.SystemDao">
+    <resultMap id="BaseResultMap" type="System">
+        <id column="id" property="id"/>
+        <result column="sysname" property="sysname"/>
+        <result column="up" property="up"/>
+        <result column="down" property="down"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        sysname,
+        up,
+        down,
+        status
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="System">
+        select
+        <include refid="Base_Column_List"/>
+        from system
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+            <if test="status !=null">
+                and status = #{status}
+            </if>
+            <if test="sysname !=null and sysname !=''">
+                and sysname = #{sysname}
+            </if>
+        </where>
+    </select>
+
+    <select id="gets" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from system
+        <where>
+            <if test="po.status !=null">
+                and status = #{po.status}
+            </if>
+            <if test="po.sysname !=null and po.sysname !=''">
+                and sysname = #{po.sysname}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="System" useGeneratedKeys="true" keyProperty="id">
+        insert into system (<include refid="Base_Column_List"/>)
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{id},
+            #{sysname},
+            #{up},
+            #{down},
+            #{status}
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="System">
+        update system
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                <if test="sysname != null and sysname != ''">
+                    sysname = #{sysname},
+                </if>
+                <if test="up != null and up != ''">
+                    up = #{up},
+                </if>
+                <if test="down != null and down != ''">
+                    down = #{down},
+                </if>
+                <if test="status != null">
+                    status = #{status},
+                </if>
+            </trim>
+        </set>
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+        </where>
+    </update>
+</mapper>

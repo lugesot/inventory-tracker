@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.inventory.tracker.dao.TrackerDao">
+    <resultMap id="BaseResultMap" type="Tracker">
+        <id column="id" property="id"/>
+        <result column="sysid" property="sysid"/>
+        <result column="templateid" property="templateid"/>
+        <result column="eventno" property="eventno"/>
+        <result column="sku" property="sku"/>
+        <result column="eventstatus" property="eventstatus"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        sysid,
+        templateid,
+        eventno,
+        sku,
+        eventstatus
+    </sql>
+
+    <select id="gets" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from tracker
+        <where>
+            <if test="po.sysid !=null">
+                and sysid = #{po.sysid}
+            </if>
+            <if test="po.templateid !=null">
+                and templateid = #{po.templateid}
+            </if>
+        </where>
+    </select>
+</mapper>

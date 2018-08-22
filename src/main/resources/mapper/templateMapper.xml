@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.inventory.tracker.dao.TemplateDao">
+    <resultMap id="BaseResultMap" type="Template">
+        <id column="id" property="id"/>
+        <result column="sysid" property="sysid"/>
+        <result column="templatename" property="templatename"/>
+        <result column="template" property="template"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,
+        sysid,
+        templatename,
+        template,
+        status
+    </sql>
+
+    <select id="get" resultMap="BaseResultMap" parameterType="Template">
+        select
+        <include refid="Base_Column_List"/>
+        from template
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+            <if test="sysid !=null">
+                and sysid = #{sysid}
+            </if>
+            <if test="status !=null">
+                and status = #{status}
+            </if>
+            <if test="templatename !=null and templatename !=''">
+                and templatename = #{templatename}
+            </if>
+        </where>
+    </select>
+
+    <select id="gets" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from template
+        <where>
+            <if test="po.status !=null">
+                and status = #{po.status}
+            </if>
+            <if test="po.sysid !=null">
+                and sysid = #{po.sysid}
+            </if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="Template" useGeneratedKeys="true" keyProperty="id">
+        insert into template (<include refid="Base_Column_List"/>)
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{id},
+            #{sysid},
+            #{templatename},
+            #{template},
+            #{status}
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="Template">
+        update template
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                <if test="sysid != null">
+                    sysid = #{sysid},
+                </if>
+                <if test="templatename != null and templatename != ''">
+                    templatename = #{templatename},
+                </if>
+                <if test="template != null and template != ''">
+                    template = #{template},
+                </if>
+                <if test="status != null">
+                    status = #{status},
+                </if>
+            </trim>
+        </set>
+        <where>
+            <if test="id !=null">
+                and id = #{id}
+            </if>
+        </where>
+    </update>
+</mapper>

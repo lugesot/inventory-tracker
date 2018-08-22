@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="defaultLogConfig"
+			   packages="">
+	<properties>
+		<property name="LOG_HOME">/srv/logs</property>
+		<property name="patternlayout">
+			%-5p [%d{MM-dd HH:mm:ss}] %F(%L) - %m%n
+		</property>
+		<property name="filename">${LOG_HOME}/tracker.log</property>
+	</properties>
+
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${patternlayout}"/>
+		</Console>
+
+		<RollingFile name="asynchRollingFile" fileName="${filename}"
+					 filePattern="${LOG_HOME}/tracker-%d{yyyy-MM-dd}.log">
+			<PatternLayout pattern="${patternlayout}"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+			</Policies>
+			<DefaultRolloverStrategy>
+				<Delete basePath="${LOG_HOME}" maxDepth="1">
+					<IfFileName glob="tracker-*.log" />
+					<IfLastModified age="30d" />
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+
+		<AsyncLogger name="java.sql" level="debug" additivity="false">
+			<AppenderRef ref="asynchRollingFile"/>
+			<AppenderRef ref="console"/>
+		</AsyncLogger>
+
+		<AsyncLogger name="org.springframework" level="debug" additivity="false">
+			<AppenderRef ref="asynchRollingFile"/>
+			<AppenderRef ref="console"/>
+		</AsyncLogger>
+
+		<AsyncRoot level="info" includeLocation="true">
+			<AppenderRef ref="asynchRollingFile"/>
+			<AppenderRef ref="console"/>
+		</AsyncRoot >
+
+	</Loggers>
+</Configuration>

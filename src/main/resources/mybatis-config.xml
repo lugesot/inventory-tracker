@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <properties>
+        <property name="dialect" value="MYSQL"/>
+    </properties>
+
+    <typeAliases>
+        <typeAlias type="com.jd.inventory.tracker.domain.System" alias="System"/>
+        <typeAlias type="com.jd.inventory.tracker.domain.Template" alias="Template"/>
+        <typeAlias type="com.jd.inventory.tracker.domain.Tracker" alias="Tracker"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.jd.inventory.tracker.interceptor.PaginationInterceptor"/>
+    </plugins>
+    <mappers>
+        <mapper resource="mapper/trackerMapper.xml"/>
+        <mapper resource="mapper/systemMapper.xml"/>
+        <mapper resource="mapper/templateMapper.xml"/>
+    </mappers>
+</configuration>

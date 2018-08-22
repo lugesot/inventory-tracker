@@ -1,0 +1,30 @@
+body{background:#D2E0F2; }
+a{ color:Black; text-decoration:none;}
+a:hover{ color:blue; text-decoration:none;}
+.textbox03 {border: #878787 1px solid;padding: 4px 3px;font:Verdana, Geneva, sans-serif,宋体;line-height: 14px; background-color: #fff;  height: auto; font-size: 14px;  font-weight: bold; width: 190px; }
+
+.footer{text-align:center;color:#15428B; margin:0px; padding:0px;line-height:23px; font-weight:bold;}
+
+.head a{color:White;text-decoration:underline;}
+
+.noscript{position:absolute; z-index:100000; height:2046px;top:0px;left:0px; width:100%; background:white; text-align:center;}
+.bottom{height: 30px; background: #D2E0F2; }
+/*****self***/
+
+.label{display:inline-block; width:85px;font-size:13px;text-align:right;padding-right:8px;}
+.row{padding:10px;width:99%;}
+.cols{float:left;width:48%;padding:8px 0;}
+.input{display:inline;width:15%;height:25px!important;min-height:25px!important;font-size:13px;padding-left:5px;}
+.input-short{display:inline;width:170px!important;height:25px!important;font-size:14px;padding-left:5px;}
+.btn{padding:1px 10px;}
+.center{text-align:center;margin-left:auto; margin-right:auto;}
+.dialog{overflow-x:hidden;}
+.breadcrumb{font-size:14px;padding:10px;}
+.body{padding:7px;}
+.body-dialog{overflow-y:auto;overflow-x:hidden;}
+
+table tr td label{font-weight:bold;}
+table tr td span.textbox{border-radius:0;}
+table tr td .textbox-text{border-radius: 0;}
+table tr td .easyui-linkbutton.l-btn{border-radius:0;padding:2px 14px;margin-right:20px;background:#5090c1;color:#fff;font-weight:bold;}
+table tr td .easyui-linkbutton.l-btn:hover{background: #3f739a;border:none;color:#fff;}

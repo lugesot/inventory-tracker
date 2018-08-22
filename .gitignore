@@ -1,0 +1,8 @@
+# ignore file
+*.iml
+target/
+.idea/
+.metadata/
+*.log
+
+/RemoteSystemsTempFiles
