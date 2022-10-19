@@ -20,7 +20,7 @@
         <commons.dbcp.version>1.4</commons.dbcp.version>
         <commons.pool.version>1.6</commons.pool.version>
         <servlet.version>3.0.1</servlet.version>
-        <org.codehaus.jackson.version>2.8.4</org.codehaus.jackson.version>
+        <org.codehaus.jackson.version>2.13.4.1</org.codehaus.jackson.version>
         <slf4j.version>1.7.21</slf4j.version>
         <log4j.version>2.6.2</log4j.version>
         <disruptor.version>3.3.5</disruptor.version>
